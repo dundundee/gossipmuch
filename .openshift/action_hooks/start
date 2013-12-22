@@ -1,0 +1,5 @@
+#!/bin/bash
+# The logic to start up your application should be put in this script
+
+echo "Starting up tornado web server."
+nohup ${OPENSHIFT_REPO_DIR}/diy/tornado.py > ${OPENSHIFT_DIY_LOG_DIR}/tornado.log 2>&1 &
