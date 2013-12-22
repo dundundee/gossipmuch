@@ -29,22 +29,25 @@ function build_nginx()
 	mkdir -p ${NGINX_BUILD_DIR}
 
 	echo "Downloading $PCRE_NAME and $NGINX_NAME sources..."
-	echo "----------------------------------------------------------------------------------"
+	#echo "----------------------------------------------------------------------------------"
 	cd ${BUILD_DIR}
 	wget ${PCRE_URL} >/dev/null 2>&1
 	wget ${NGINX_URL} >/dev/null 2>&1
 
 	echo "Decompressing tar.gz files..."
-	echo "----------------------------------------------------------------------------------"
+	#echo "----------------------------------------------------------------------------------"
 	tar xf ${PCRE_NAME}.tar.gz
 	tar xf ${NGINX_NAME}.tar.gz
 
-    echo "Running configure script..."
-    echo "----------------------------------------------------------------------------------"
+	echo "Running configure script..."
+    	#echo "----------------------------------------------------------------------------------"
 	cd ${NGINX_NAME}
 	./configure --prefix=${INSTALL_DIR}/nginx --with-pcre=${PCRE_BUILD_DIR} --with-http_ssl_module >/dev/null 2>&1
+	echo "Running make..."
 	make >/dev/null 2>&1
+	echo "Running make install..."
 	make install >/dev/null 2>&1
+	echo "Running make clean..."
 	make clean >/dev/null 2>&1
 
 	mkdir -p ${INSTALL_DIR}/nginx/run
