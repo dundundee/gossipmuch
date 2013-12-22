@@ -1,0 +1,6 @@
+#!/bin/bash
+
+TEMPLATES_DIR=${OPENSHIFT_REPO_DIR}/.openshift/templates
+#Copy new nginx.conf with environment variables applied using erb.
+echo "Rendering and copying configuration files."
+erb ${TEMPLATES_DIR}/nginx.conf.erb > ${INSTALL_DIR}/nginx/conf/nginx.conf
